@@ -1,0 +1,58 @@
+<%- include('layouts/header') %>
+<%- include('layouts/nav') %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="mt-3">Daftar Kontak</h2>
+
+      <a href="/contact/add" class="btn btn-primary mb-2">tambah kontak</a>
+
+      <% if (msg.length !== 0) { %>       
+        <div class="alert alert-success" role="alert">
+          <%= msg %>
+        </div>
+      <% } %>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nama</th>
+            <th scope="col">No Telp</th>
+            <th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (contacts.length === 0) { %>
+            <div class="alert alert-danger" role="alert">kontak tidak ada.</div>
+          <% } %>
+
+          <% contacts.forEach((contact, i) => { %>
+            <tr>
+              <th scope="row"><%= `${i+1}` %></th>
+              <td><%= contact.nama %></td>
+              <td><%= contact.nohp %></td>
+              <td>
+                <a href="/contact/<%= contact.nama %>" class="button btn-primary badge rounded-pill">detail</a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%- include('layouts/footer') %>

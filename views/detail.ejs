@@ -1,0 +1,40 @@
+<%- include('layouts/header') %>
+<%- include('layouts/nav') %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Detail Contact</h2>
+      <% if (!contact) { %>
+        <div class="alert alert-danger" role="alert">
+          kontak tidak ada. <a href="/contact" class="alert-link">kembail</a>
+        </div>
+        <% } else { %>          
+         <div class="card" style="width: 18rem;">
+           <div class="card-body">
+             <h5 class="card-title"><%= contact.nama %></h5>
+             <h6 class="card-subtitle mb-2 text-muted"><%= contact.nohp %></h6>
+             <p class="card-text"><%= contact.email %></p>
+             <a href="/contact/edit/<%= contact.nama %>" class="btn btn-info badge">ubah</a>
+             <!-- <a href="/contact/delete/<%= contact.nama %>" class="btn btn-danger badge" onclick="return confirm('hapus')">hapus</a> -->
+             <form action="/contact?_method=DELETE" method="POST" class="d-inline">
+              <input type="hidden" name="nama" value="<%= contact.nama %>">
+              <button type="submit" class="btn btn-danger badge" onclick="return confirm('hapus')">hapus</button>
+             </form>
+             <a href="/contact" class="card-link d-block mt-2">kembali</a>
+           </div>
+         </div>      
+      <% }  %> 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<%- include('layouts/footer') %>
